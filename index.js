@@ -14,6 +14,9 @@ const customerCard = document.getElementById("customer-card");
 const cvv = document.getElementById("cvv");
 const warningText = document.getElementById("warning");
 const discount = document.getElementById("discount2");
+const ratings = document.getElementById("ratings");
+const closeBtn = document.getElementById("close-btn");
+const stars = document.querySelectorAll(".stars i");
 
 //listening for a click event on the entire body
 //if the add button is clicked, get its value and pass to renderOrder
@@ -68,7 +71,6 @@ const addOrder = (orderId) => {
     return item.id == orderId;
   })[0];
   orderList.add(targetMenu); //adding the item to the orderList Set
-
   orderListHtml(orderList);
 };
 
@@ -108,33 +110,33 @@ payButton.addEventListener("click", function () {
       .value.split(" ")[0];
 
     // console.log(customerName);
-    orderContent.innerHTML = `
+    orderItems.innerHTML = `
       <div class = "thank-you">
          <p>Thanks ${customerName}! Your order is on its way!</p>
       </div>
   `;
     discount.style.display = "none";
+    closeBtn.addEventListener("click", () => {
+      ratings.style.display = "none";
+    });
+    setTimeout(function () {
+      ratings.style.display = "block";
+    }, 1000);
+    // console.log(stars);
+    //looping through the stars nodelist
+    stars.forEach((star, index1) => {
+      // console.log(star, index1);
+      //adding an event listener for each star
+      star.addEventListener("click", () => {
+        stars.forEach((star, index2) => {
+          //add classlist active to the star clicked and lower indexes
+          index1 >= index2
+            ? star.classList.add("active")
+            : star.classList.remove("active");
+        });
+      });
+    });
   }
-
-  // if (customerName.value == "" && customerCard.value == "" && cvv.value == "") {
-  //   // console.log("please fill all fields");
-  //   warningText.style.display = "block";
-  //   return;
-  // } else {
-  //   modal.style.display = "none";
-  //   //getting the first name of the customer
-  //   const customerName = document
-  //     .getElementById("customer-name")
-  //     .value.split(" ")[0];
-
-  //   // console.log(customerName);
-  //   orderContent.innerHTML = `
-  //     <div class = "thank-you">
-  //        <p>Thanks ${customerName}! Your order is on its way!</p>
-  //     </div>
-  // `;
-  //   discount.style.display = "none";
-  // }
 });
 
 //render menu list

@@ -1,64 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Smythe&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Smythe&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/f49288d376.js" crossorigin="anonymous"></script>
     <title>Afi's Diner</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container">
-      <div class="header">
-        <h3>Afi's Diner</h3>
-        <p>The best burgers and pizzas in town.</p>
-      </div>
-
-      <div class="content" id="content">
-        <p class="discount">
-          Order two items or more items for a 15% discount!
-        </p>
-      </div>
-      <p class="discount" id="discount2">Yaayy!! You got a 15% discount!</p>
-      <div class="order" id="order">
-        <p class="center-align">Your order</p>
-        <div class="order-items" id="order-items"></div>
-
-        <div class="order-total" id="order-total">
-          <p>Total price:</p>
-          <p id="total-price"></p>
+        <div class="header">
+            <h3>Afi's Diner</h3>
+            <p>The best burgers and pizzas in town.</p>
         </div>
-        <button class="btn" id="complete-order">Complete order</button>
-      </div>
 
-      <div id="modal" class="modal">
-        <div class="modal-content">
-          <p>Enter card details</p>
-          <input
-            type="text"
-            name="customer-name"
-            id="customer-name"
-            placeholder="Enter your name"
-          />
-          <input
-            type="number"
-            name="customer-card"
-            id="customer-card"
-            placeholder="Enter card number"
-          />
-          <input type="number" name="card" id="cvv" placeholder="Enter  CVV" />
-          <span class="warning" id="warning">Kindly fill all fields</span>
-          <button class="btn" id="pay-button">Pay</button>
+        <div class="content" id="content">
+            <p class="discount">
+                Order two items or more items for a 15% discount!
+            </p>
         </div>
-      </div>
+        <p class="discount" id="discount2">Yaayy!! You got a 15% discount!</p>
+        <div class="order" id="order">
+            <p class="center-align">Your order</p>
+            <div class="order-items" id="order-items"></div>
+
+            <div class="order-total" id="order-total">
+                <p>Total price:</p>
+                <p id="total-price"></p>
+            </div>
+            <button class="btn" id="complete-order">Complete order</button>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <p>Enter card details</p>
+                <input type="text" name="customer-name" id="customer-name" placeholder="Enter your name" />
+                <input type="number" name="customer-card" id="customer-card" placeholder="Enter card number" />
+                <input type="number" name="card" id="cvv" placeholder="Enter  CVV" />
+                <span class="warning" id="warning">Kindly fill all fields</span>
+                <button class="btn" id="pay-button">Pay</button>
+            </div>
+        </div>
+
+        <div class="modal" id="ratings">
+            <div class="modal-content">
+                <div>
+                    <p>How was your ordering experience?</p>
+                    <p class="close" id="close-btn">&times;</p>
+                </div>
+
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="index.js" type="module"></script>
-  </body>
+</body>
+
 </html>
