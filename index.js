@@ -6,6 +6,9 @@ const orderContent = document.getElementById("order");
 const orderItems = document.getElementById("order-items");
 const totalPrice = document.getElementById("total-price");
 const orderList = new Set(); //to cater for duplicates
+const completeOrderBtn = document.getElementById("complete-order");
+const modal = document.getElementById("modal");
+const payButton = document.getElementById("pay-button");
 
 //listening for a click event on the entire body
 //if the add button is clicked, get its value and pass to renderOrder
@@ -61,6 +64,26 @@ const removeOrder = (orderId) => {
   orderListHtml(orderList);
 };
 
+//complete order function
+completeOrderBtn.addEventListener("click", function () {
+  if (orderItems.innerHTML == "") {
+    console.log("you must order something first!!");
+  } else {
+    console.log("Hells yeah");
+    modal.style.display = "block";
+  }
+});
+
+//pay button function
+payButton.addEventListener("click", function () {
+  modal.style.display = "none";
+  orderContent.innerHTML = `
+    <div class = "thank-you">
+       <p>Thanks Mawushie! Your order is on its way!</p>
+    </div>
+`;
+});
+
 //render menu list
 const renderMenu = () => {
   for (let menu of menuArray) {
@@ -74,7 +97,7 @@ const renderMenu = () => {
               <p class="amount">$${menu.price}</p>
             </div>
           </div>
-          <div><img src="assets/add-btn.png" data-add="${menu.id}" /></div>
+          <div><a href="#order"><img src="assets/add-btn.png" data-add="${menu.id}" /></a></div>
         </div>
     `;
   }

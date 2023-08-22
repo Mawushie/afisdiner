@@ -24,11 +24,31 @@
         <p class="center-align">Your order</p>
         <div class="order-items" id="order-items"></div>
 
-        <div class="order-total">
+        <div class="order-total" id="order-total">
           <p>Total price:</p>
           <p id="total-price"></p>
         </div>
         <button class="btn" id="complete-order">Complete order</button>
+      </div>
+
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <p>Enter card details</p>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter your name"
+          />
+          <input
+            type="number"
+            name="card"
+            id="card"
+            placeholder="Enter card number"
+          />
+          <input type="number" name="card" id="card" placeholder="Enter  CVV" />
+          <button class="btn" id="pay-button">Pay</button>
+        </div>
       </div>
     </div>
 
