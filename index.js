@@ -9,6 +9,11 @@ const orderList = new Set(); //to cater for duplicates
 const completeOrderBtn = document.getElementById("complete-order");
 const modal = document.getElementById("modal");
 const payButton = document.getElementById("pay-button");
+const customerName = document.getElementById("customer-name");
+const customerCard = document.getElementById("customer-card");
+const cvv = document.getElementById("cvv");
+const warningText = document.getElementById("warning");
+const discount = document.getElementById("discount2");
 
 //listening for a click event on the entire body
 //if the add button is clicked, get its value and pass to renderOrder
@@ -24,7 +29,7 @@ document.addEventListener("click", (e) => {
 //html to render orders
 const orderListHtml = (order) => {
   let totalArray = []; //an array to store the prices
-  orderItems.innerHTML = ""; //clear the
+  orderItems.innerHTML = ""; //clear the order content first
   order.forEach((item) => {
     orderItems.innerHTML += `
             <div class="items">
@@ -42,7 +47,18 @@ const orderListHtml = (order) => {
   totalArray.forEach((item) => {
     sum += item;
   });
+  // console.log(sum);
   totalPrice.innerHTML = `$${sum}`;
+
+  //handling the discount
+  if (order.size >= 2) {
+    discount.style.display = "block";
+    let newTotal = sum - 0.15 * sum; //price with discount
+    totalPrice.innerHTML = `$${newTotal}`;
+    // console.log("two items selected");
+  } else {
+    discount.style.display = "none";
+  }
 };
 
 const addOrder = (orderId) => {
@@ -52,6 +68,7 @@ const addOrder = (orderId) => {
     return item.id == orderId;
   })[0];
   orderList.add(targetMenu); //adding the item to the orderList Set
+
   orderListHtml(orderList);
 };
 
@@ -67,21 +84,57 @@ const removeOrder = (orderId) => {
 //complete order function
 completeOrderBtn.addEventListener("click", function () {
   if (orderItems.innerHTML == "") {
-    console.log("you must order something first!!");
+    // console.log("you must order something first!!");
+    return;
   } else {
-    console.log("Hells yeah");
+    // console.log("Hells yeah");
     modal.style.display = "block";
   }
 });
 
 //pay button function
 payButton.addEventListener("click", function () {
-  modal.style.display = "none";
-  orderContent.innerHTML = `
-    <div class = "thank-you">
-       <p>Thanks Mawushie! Your order is on its way!</p>
-    </div>
-`;
+  if (customerName.value == "") {
+    warningText.style.display = "block";
+  } else if (customerCard.value == "") {
+    warningText.style.display = "block";
+  } else if (cvv.value == "") {
+    warningText.style.display = "block";
+  } else {
+    modal.style.display = "none";
+    //getting the first name of the customer
+    const customerName = document
+      .getElementById("customer-name")
+      .value.split(" ")[0];
+
+    // console.log(customerName);
+    orderContent.innerHTML = `
+      <div class = "thank-you">
+         <p>Thanks ${customerName}! Your order is on its way!</p>
+      </div>
+  `;
+    discount.style.display = "none";
+  }
+
+  // if (customerName.value == "" && customerCard.value == "" && cvv.value == "") {
+  //   // console.log("please fill all fields");
+  //   warningText.style.display = "block";
+  //   return;
+  // } else {
+  //   modal.style.display = "none";
+  //   //getting the first name of the customer
+  //   const customerName = document
+  //     .getElementById("customer-name")
+  //     .value.split(" ")[0];
+
+  //   // console.log(customerName);
+  //   orderContent.innerHTML = `
+  //     <div class = "thank-you">
+  //        <p>Thanks ${customerName}! Your order is on its way!</p>
+  //     </div>
+  // `;
+  //   discount.style.display = "none";
+  // }
 });
 
 //render menu list

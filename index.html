@@ -19,7 +19,13 @@
         <h3>Afi's Diner</h3>
         <p>The best burgers and pizzas in town.</p>
       </div>
-      <div class="content" id="content"></div>
+
+      <div class="content" id="content">
+        <p class="discount">
+          Order two items or more items for a 15% discount!
+        </p>
+      </div>
+      <p class="discount" id="discount2">Yaayy!! You got a 15% discount!</p>
       <div class="order" id="order">
         <p class="center-align">Your order</p>
         <div class="order-items" id="order-items"></div>
@@ -36,17 +42,18 @@
           <p>Enter card details</p>
           <input
             type="text"
-            name="name"
-            id="name"
+            name="customer-name"
+            id="customer-name"
             placeholder="Enter your name"
           />
           <input
             type="number"
-            name="card"
-            id="card"
+            name="customer-card"
+            id="customer-card"
             placeholder="Enter card number"
           />
-          <input type="number" name="card" id="card" placeholder="Enter  CVV" />
+          <input type="number" name="card" id="cvv" placeholder="Enter  CVV" />
+          <span class="warning" id="warning">Kindly fill all fields</span>
           <button class="btn" id="pay-button">Pay</button>
         </div>
       </div>
